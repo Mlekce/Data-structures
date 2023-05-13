@@ -5,3 +5,36 @@ my_que.append(4)
 my_que.append(10)
 print(my_que)
 print(my_que.popleft())
+
+
+# My Implementation
+
+class Que:
+    def __init__(self) -> None:
+        self.que = list()
+    
+    def append(self, item):
+        self.que.append(item)
+    
+    def popleft(self):
+        if len(self.que) >= 1:
+            return self.que.pop(0)
+        
+        elif len(self.que) <= 0:
+            return None
+    
+    def show(self):
+        return self.que
+    
+my_que = Que()
+print(my_que.popleft())
+my_que.append(1)
+print(my_que.popleft())
+my_que.append(2)
+my_que.append(3)
+print(my_que.show())
+print(my_que.popleft())
+print(my_que.show())
+my_que.append(2)
+my_que.append(3)
+print(my_que.show())
