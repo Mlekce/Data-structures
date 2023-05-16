@@ -37,6 +37,25 @@ class LinkedList:
         self.length += 1
 
     def pop(self):
+        if not self.head_node:
+            return None
+
+        if self.head_node == self.tail_node:
+            popped_node = self.head_node
+            self.head_node = None
+            self.tail_node = None
+            self.length -= 1
+            return popped_node
+        else:
+            pre = self.head_node
+            temp = self.head_node
+            while temp.next is not None:
+                pre = temp
+                temp = temp.next
+            self.tail_node = pre
+            self.tail_node.next = None
+        self.length -= 1
+        return temp.value
         
 
 my_linked_list = LinkedList(5)
