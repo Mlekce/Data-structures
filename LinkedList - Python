@@ -122,4 +122,19 @@ class LinkedList:
     def get_head(self):
         return self.head.value
 
-my_ll = LinkedList(1)
+    def size(self):
+        return self.lenght
+
+    def is_empty(self):
+        if self.head == None and self.lenght == 0:
+            return True
+        else:
+            return False
+
+    def search(self, value):
+        temp = self.head
+        for _ in range(self.lenght):
+            if temp.value == value:
+                return True
+            temp = temp.next
+        return False
