@@ -188,5 +188,22 @@ class LinkedList:
                 if slow == fast:
                     return True
             return False   
+    
+    def remove_duplicates(self):
+        if self.head == None:
+            return None
+        else:
+            values = set()
+            pre = None
+            temp = self.head
+            while temp:
+                if temp.value in values:
+                    pre.next = temp.next
+                    self.length -= 1
+                else:
+                    values.add(temp.value)
+                    pre = temp    
+                temp = temp.next
+            return values
             
 my_ll = LinkedList(1)
