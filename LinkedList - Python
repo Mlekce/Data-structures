@@ -12,9 +12,14 @@ class LinkedList:
 
     def append(self, value):
         new_node = node(value)
-        self.tail.next = new_node
-        self.tail = new_node
-        self.lenght += 1
+        if self.lenght == 0:
+            self.head = new_node
+            self.tail = new_node
+            self.lenght += 1
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+            self.lenght += 1
 
     def print_list(self):
         if self.lenght == 0:
@@ -138,3 +143,29 @@ class LinkedList:
                 return True
             temp = temp.next
         return False
+
+    def clear(self):
+        self.head = None
+        self.tail = None
+        self.lenght = 0
+    
+    def to_list(self):
+        lista = []
+        temp = self.head
+        while temp:
+            lista.append(temp.value)
+            temp = temp.next
+        return lista
+
+    def from_list(self, lista):
+        self.head = None
+        for item in lista:
+            self.append(item)
+
+    def reverse(self):
+        rev_list = self.to_list()
+        self.clear()
+        for i in rev_list[::-1]:
+            self.append(i)
+
+my_ll = LinkedList(1)
