@@ -206,4 +206,19 @@ class LinkedList:
                 temp = temp.next
             return values
             
+     def return_k(self, k):
+        if self.head == None or k <= 0:
+            return None
+        else:
+            slow = self.head
+            fast = self.head
+            for _ in range(k):
+                if fast == None:
+                    return None
+                fast = fast.next
+            while fast:
+                slow = slow.next
+                fast = fast.next
+            return slow.value   
+            
 my_ll = LinkedList(1)
