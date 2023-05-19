@@ -167,5 +167,13 @@ class LinkedList:
         self.clear()
         for i in rev_list[::-1]:
             self.append(i)
-
+    
+    def get_middle(self):
+        slow = self.head
+        fast = self.head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow.value
+        
 my_ll = LinkedList(1)
