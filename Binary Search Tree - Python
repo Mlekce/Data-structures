@@ -46,5 +46,17 @@ class BinarySearchTree:
                     temp = temp.right
                 else:
                     temp = temp.left
+                
+    def get_min(self):
+        temp = self.root
+        while temp.left is not None:
+            temp = temp.left
+        return temp.value
+    
+    def get_max(self):
+        temp = self.root
+        while temp.right is not None:
+            temp = temp.right
+        return temp.value
 
 my_bst = BinarySearchTree()
