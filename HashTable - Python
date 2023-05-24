@@ -1,0 +1,36 @@
+class HashTable:
+    def __init__(self, size=5):
+        self.array = [None] * size
+    
+    def _hash(self, key):
+        my_hash = 0
+        for letter in key:
+            my_hash = (my_hash +  ord(letter) * 23) % len(self.array)
+        return my_hash
+
+    def print_map(self):
+        for index, value in enumerate(self.array):
+            print(index, value)
+    
+    def set_item(self, key, value):
+        index = self._hash(key)
+        if self.array[index] is None:
+            self.array[index] = []
+        self.array[index].append([key, value])
+
+    def get_item(self, key):
+        index = self._hash(key)
+        if self.array[index] is not None:
+            for item in range(len(self.array[index])):
+                if self.array[index][item][0] == key:
+                    return self.array[index][item][1]
+        return False
+
+    def keys(self):
+        arr = []
+        for j in range(len(self.array)):
+            if self.array[j] is not None:
+                for i in range(len(self.array[j])):
+                    arr.append(self.array[j][i][0])
+        return arr
+
