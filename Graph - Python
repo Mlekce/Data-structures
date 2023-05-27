@@ -1,0 +1,35 @@
+class Graph:
+    def __init__(self) -> None:
+        self.adj_arr = {}
+    
+    def add_vertex(self, vertex):
+        if vertex not in self.adj_arr.keys():
+            self.adj_arr[vertex] = []
+            return True
+        return False
+    
+    def print_graph(self):
+        for vertex in self.adj_arr:
+            print(vertex, ":", self.adj_arr[vertex])
+
+    def add_edge(self, v1, v2):
+        if v1 in self.adj_arr and v2 in self.adj_arr:
+            self.adj_arr[v1].append(v2)
+            self.adj_arr[v2].append(v1)
+            return True
+        return False
+    
+    def remove_edge(self, v1, v2):
+        if v1 in self.adj_arr and v2 in self.adj_arr:
+            self.adj_arr[v1].remove(v2)
+            self.adj_arr[v2].remove(v1)
+            return True
+        return False
+
+    def remove_vertex(self, vertex):
+        if vertex in self.adj_arr.keys():
+            self.adj_arr.pop(vertex)
+            for item in self.adj_arr:
+                self.adj_arr[item].remove(vertex)
+            return True
+        return False
