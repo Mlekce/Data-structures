@@ -1,0 +1,63 @@
+class Node:
+    def __init__(self, key, value):
+        self.value = value
+        self.key = key
+        self.next = None
+
+class HashTable:
+    def __init__(self, size):
+        self.table = [None] * size
+
+    def _hash(self, key):
+        return hash(key) % len(self.table)
+    
+    def add_item(self, key, value):
+        index = self._hash(key)
+        if self.table[index] is None:
+            self.table[index] = Node(key, value)
+        else:
+            temp = self.table[index]
+            while temp is not None and temp.key != key:
+                temp = temp.next
+            if temp.key == key:
+                temp.value = value
+            else:
+                temp[key] = Node(key, value)
+                
+    def print_table(self):
+        for item in self.table:
+            if item is not None:
+                temp = item
+                while temp is not None:
+                    print(temp.value)
+                    temp = temp.next
+    
+    def get_item(self, key):
+        index = self._hash(key)
+        if self.table[index] is None:
+            return False
+        else:
+            temp = self.table[index]
+            while temp is not None and temp.key != key:
+                temp = temp.next
+            if temp.key == key:
+                return temp.value
+            else:
+                return None
+
+    def remove_item(self, key):
+        index = self._hash(key)
+        if self.table[index] is None:
+            return False
+        else: 
+            temp = self.table[index]
+            prev = None
+            while temp is not None:
+                if temp.key == key:
+                    if prev is None:
+                        self.table[index] = temp.next
+                    else:
+                        prev.next = temp.next
+                    return
+                prev = temp
+                temp = temp.next
